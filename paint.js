@@ -1,19 +1,22 @@
 "use strict";
 
 const MATRIX_SIZE = 28
-const SCALE_FACTOR = 10 
+const SCALE_FACTOR = 10
+const NUM_CATEGORIES = 10
 
 const canvas = document.getElementById('paint');
 canvas.width = MATRIX_SIZE * SCALE_FACTOR;
 canvas.height = MATRIX_SIZE * SCALE_FACTOR;
 const context = canvas.getContext('2d');
 
-var clickX = [];
-var clickY = [];
-var clickDrag = [];
-var paint;
+let clickX = [];
+let clickY = [];
+let clickDrag = [];
+let paint;
 
-const matrix = []
+const predictions = [];
+
+const matrix = [];
 
 const colorMap = {
   0: '#f2f1f9',
@@ -31,7 +34,7 @@ function addClick(x, y, dragging) {
 function redraw() {
   // Clear canvas
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-  for (var i = 0; i < clickX.length; i += 1) {
+  for (let i = 0; i < clickX.length; i += 1) {
       context.lineTo(clickX[i], clickY[i]);
   }
 }
@@ -54,7 +57,7 @@ function sumHot() {
 }
 
 function drawNew() {
-  var i = clickX.length - 1
+  let i = clickX.length - 1
   let xPos = 0;
   let yPos = 0;
   if (!clickDrag[i]) {
@@ -127,8 +130,9 @@ function mouseMoveEventHandler(e) {
     renderMatrix();
     let hotness = sumHot();
     updateElement("hotRatio", Math.round(hotness.ratio, 2).toString() + "%");
-    updateElement("totalHot", hotness.hotnessTotal);
+    updateElement("totalHot", hotness.hotCount);
     updateElement("vector", matrix);
+    updateElement("prediction", predictions);
     addClick(x, y, true);
     drawNew();
   }
@@ -162,8 +166,8 @@ function buildSquareMatrix(size) {
 }
 
 function renderMatrix() {
-  var cellWidth = SCALE_FACTOR;
-  var cellHeight = SCALE_FACTOR;
+  let cellWidth = SCALE_FACTOR;
+  let cellHeight = SCALE_FACTOR;
   matrix.forEach((row, y) => {
     row.forEach((value, x) => {
       // let color = Math.round(Math.random())
@@ -177,6 +181,13 @@ function renderMatrix() {
   });
 }
 
+function initializePredictions() {
+  for (let i = 0; i < NUM_CATEGORIES; i++) {
+    predictions.push(0.0);
+  }
+}
+
+initializePredictions();
 buildSquareMatrix(MATRIX_SIZE);
 renderMatrix();
 updateElement("vector", matrix)
