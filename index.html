@@ -1,23 +1,43 @@
 <html>
   <head>
-      <link rel="stylesheet" href="./style.css">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;800&display=swap" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+      <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <h1>mnist paint</h1>
     <div id="app-container">
+      <div id="header-container">
+        <h1>mnist paint</h1>
+      </div>
       <div id="paint-container">
         <div>
           <canvas id="paint"></canvas>
         </div>
+        <div id="prediction-container">
+          <h1 id="prediction">
+            ?
+          </h1>
+        </div>
       </div>
       <div id="stats-container">
+        <div class="controls">
+          <h2>controls</h2>
+          <button id="clear">
+            Clear
+          </button>
+          <button id="light-noise">
+            Light Noise
+          </button>
+          <button id="heavy-noise">
+            Heavy Noise
+          </button>
+        </div>
         <div class="prediction-stats">
-          <h2>prediction</h2>
-          <div id="prediction">
+          <h2>prediction scores</h2>
+          <div id="scores">
+            0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000
           </div>
         </div>
         <div class="paint-stats">
@@ -44,6 +64,6 @@
       </div>
     </div>
   </body>
-  <script lang="js" src="./paint.js">
+  <script lang="js" src="paint.js">
   </script>
 </html>
