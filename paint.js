@@ -128,6 +128,7 @@ function mouseMoveEventHandler(e) {
       updateMatrix(x, y);
     } catch { }
     renderMatrix();
+    predict();
     let hotness = sumHot();
     updateElement("hotRatio", Math.round(hotness.ratio, 2).toString() + "%");
     updateElement("totalHot", hotness.hotCount);
@@ -181,11 +182,34 @@ function renderMatrix() {
   });
 }
 
+function predict() {
+  let input = []
+
+  for (let i = 0; i < MATRIX_SIZE; i++) {
+    for (let j = 0; j < MATRIX_SIZE; j++) {
+      input.push(matrix[i][j] / 3);
+    }
+  }
+
+  let tensor = tf.tensor(input).reshape([1, 28, 28, 1])
+
+  window.model.predict([tensor]).array().then(function(scores) {
+      console.log(scores);
+      let updatedScores = scores[0];
+      let predicted = updatedScores.indexOf(Math.max(...updatedScores));
+      // console.log(predicted);
+  });
+}
+
 function initializePredictions() {
   for (let i = 0; i < NUM_CATEGORIES; i++) {
     predictions.push(0.0);
   }
 }
+
+tf.loadLayersModel("./models/mnist_cnn_tfjs/model.json").then(function(model) {
+   window.model = model;
+});
 
 initializePredictions();
 buildSquareMatrix(MATRIX_SIZE);
