@@ -1,0 +1,41 @@
+body {
+  background-color: #F0FFFF;
+  font-family: 'Inconsolata', monospace;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(54,45,103,1) 29%, rgba(50,102,182,1) 100%);
+  color: white;
+}
+
+canvas {
+  border: 1px solid black;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#app-container {
+  display: flex;
+  max-width: 600px;
+}
+
+#paint-container {
+  display: flex;
+  align-items: center;
+  border: 1px dotted #222;
+  padding: 1rem;
+}
+
+#stats-container {
+  padding-left: 1rem;
+  border: 1px dotted #222;
+  width: 100%;
+}
+
+#cursor-stats {
+  padding: 12px;
+  margin: 12px;
+}
+
+#vector {
+  display: block;
+  padding: 12px;
+  word-wrap: break-word;
+}

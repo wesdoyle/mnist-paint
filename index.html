@@ -1,0 +1,47 @@
+<html>
+  <head>
+      <link rel="stylesheet" href="./style.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;800&display=swap" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  </head>
+  <body>
+    <h1>mnist paint</h1>
+    <div id="app-container">
+      <div id="paint-container">
+        <div>
+          <canvas id="paint"></canvas>
+        </div>
+      </div>
+      <div id="stats-container">
+        <div class="prediction-stats">
+          <h2>prediction</h2>
+        </div>
+        <div class="paint-stats">
+          <h2>paint stats</h2>
+          <div id="cursor-stats">
+            <div>
+              Last X: <span id="xDisplay"></span>
+            </div>
+            <div>
+              Last Y: <span id="yDisplay"></span>
+            </div>
+            <div>
+              Total Hot Px: <span id="totalHot"></span>
+            </div>
+            <div>
+              Hot Px Ratio: <span id="hotRatio"></span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>vector</h2>
+          <span id="vector"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script lang="js" src="./paint.js">
+  </script>
+</html>
