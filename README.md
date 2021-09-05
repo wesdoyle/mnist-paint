@@ -10,4 +10,4 @@ To run, start an HTTP server in the root of the directory, e.g.:
 python3 -m http.server 7771
 ```
 
-![demo](./media/demo.gif)
+![demo](demo.gif)
