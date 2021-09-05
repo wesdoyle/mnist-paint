@@ -47,7 +47,7 @@
             <label for="deeper-model">
               Deeper CNN
             </label>
-            <input type="radio" id="heuristic-model" name="active-model" value="heuristic">
+            <input type="radio" id="heuristic-model" name="active-model" value="heuristic" disabled>
             <label for="heuristic-model">
               Heuristic
             </label>
@@ -66,16 +66,16 @@
           <div class="scores-section">
             <table>
               <tr>
-                <td>0</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-                <td>8</td>
-                <td>9</td>
+                <th id="score-index-0">0</th>
+                <th id="score-index-1">1</th>
+                <th id="score-index-2">2</th>
+                <th id="score-index-3">3</th>
+                <th id="score-index-4">4</th>
+                <th id="score-index-5">5</th>
+                <th id="score-index-6">6</th>
+                <th id="score-index-7">7</th>
+                <th id="score-index-8">8</th>
+                <th id="score-index-9">9</th>
               </tr>
               <tr>
                 <td id="score-0" class="score-index-value">0.00</td>
@@ -90,11 +90,10 @@
                 <td id="score-9" class="score-index-value">0.00</td>
               </tr>
             </table>
-            <div id="scores"></div>
           </div>
         </div>
 
-        <div id="paint-stats-container" class="container">
+        <div id="paint-stats-container">
           <h2>paint stats</h2>
           <div id="cursor-stats">
             <div>

@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #ffffff;
   font-family: 'Inconsolata', monospace;
   margin: auto;
   color: #5d8671;
@@ -8,6 +8,15 @@ body {
 h1, h2, h3, h4 {
   color: #7ca391;
   padding: 4px;
+}
+
+table {
+  border: none;
+}
+
+td {
+  padding: 2px;
+  text-align: center;
 }
 
 input[type="radio"] {
@@ -31,9 +40,7 @@ input[type="radio"] {
 }
 
 .vector-bit {
-  width: 7px;
-  height: 7px;
-  padding: 1px;
+  padding: 1px 2px;
   margin: 1px;
   text-aligin: center;
 }

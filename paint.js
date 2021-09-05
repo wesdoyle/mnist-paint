@@ -6,6 +6,7 @@
 const MATRIX_SIZE = 28
 const SCALE_FACTOR = 10
 const NUM_CATEGORIES = 10
+const WAIT_INTERVAL = 250
 
 const COLOR_MAP = {
   0: '#edf7f1',
@@ -32,6 +33,7 @@ let clickDrag = [];
 let isPainting = false;
 let matrix = [];
 let predictions = [];
+let wait = false;
 
 function reset() {
   clickX = [];
@@ -189,26 +191,43 @@ function renderMatrix() {
   });
 }
 
-function handlePrediction() {
-  let input = [];
+function updateScoreTable(scores) {
+  for (let i=0; i<scores.length; i++) {
+    let cell = document.getElementById(`score-${i}`)
+    cell.innerHTML = scores[i];
+    let scaledScore = parseFloat(scores[i]) + 0.2;
+    cell.style.opacity = scaledScore.toString();
+    document.getElementById(`score-index-${i}`).style.opacity = scaledScore.toString();
+  }
+}
 
-  for (let i = 0; i < MATRIX_SIZE; i++) {
+function handlePrediction() {
+
+  if (wait) return;
+
+  let input = [];
+  for (let i=0; i<MATRIX_SIZE; i++) {
     for (let j = 0; j < MATRIX_SIZE; j++) {
       input.push(matrix[i][j] / 3);
     }
   }
 
+  wait = true;
+
+  setTimeout(function (event) {
+    wait = false;
+  }, WAIT_INTERVAL);
+
   let tensor = tf.tensor(input).reshape([1, 28, 28, 1]);
 
   window.model.predict([tensor]).array().then(scores => {
     let roundedScores = [];
-
-    for (let i=0; i < scores[0].length; i++) {
-      roundedScores.push(scores[0][i].toFixed(3));
+    for (let i=0; i<scores[0].length; i++) {
+      roundedScores.push(scores[0][i].toFixed(2));
     }
     let updatedScores = scores[0];
     let predicted = updatedScores.indexOf(Math.max(...updatedScores));
-    updateElement("scores", roundedScores);
+    updateScoreTable(roundedScores);
     updateElement("prediction", predicted);
     document.getElementById("prediction").style.opacity = updatedScores[predicted].toString();
   });
