@@ -9,39 +9,92 @@
   </head>
   <body>
     <div id="app-container">
-      <div id="header-container" class="dotted-border">
+      <div id="header-container" class="container dotted-border">
         <h1>mnist paint</h1>
       </div>
-      <div id="paint-container" class="dotted-border">
+      <div id="paint-container" class="container dotted-border">
         <div>
+          <h2>painting</h2>
           <canvas id="paint" class="solid-border shadow"></canvas>
         </div>
-        <div id="prediction-container" class="solid-border shadow">
-          <h1 id="prediction">
-            ?
-          </h1>
+        <div class="vector-container" class="container dotted-border">
+          <h2>vector</h2>
+          <div id="vector"></div>
         </div>
       </div>
-      <div id="stats-container" class="dotted-border">
+      <div id="stats-container" class="container dotted-border">
         <div class="controls">
           <h2>controls</h2>
-          <button id="clear">
-            Clear
-          </button>
-          <button id="light-noise">
-            Light Noise
-          </button>
-          <button id="heavy-noise">
-            Heavy Noise
-          </button>
-        </div>
-        <div class="prediction-stats">
-          <h2>prediction scores</h2>
-          <div id="scores">
-            0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000
+
+          <div id="control-buttons">
+            <button id="clear">
+              Clear
+            </button>
+            <button id="light-noise">
+              Light Noise
+            </button>
+            <button id="heavy-noise">
+              Heavy Noise
+            </button>
+          </div>
+
+          <div id="model-selection">
+            <input type="radio" id="basic-model" name="active-model" value="basicCnn">
+            <label for="basic-model">
+              Basic CNN
+            </label>
+            <input type="radio" id="deeper-model" name="active-model" value="deeperCnn">
+            <label for="deeper-model">
+              Deeper CNN
+            </label>
+            <input type="radio" id="heuristic-model" name="active-model" value="heuristic">
+            <label for="heuristic-model">
+              Heuristic
+            </label>
           </div>
         </div>
-        <div class="paint-stats">
+
+        <div id="prediction-container">
+          <h2>prediction</h2>
+          <div class="prediction-section">
+            <div id="prediction"></div>
+          </div>
+        </div>
+
+        <div id="scores-container">
+          <h2>scores</h2>
+          <div class="scores-section">
+            <table>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td id="score-0" class="score-index-value">0.00</td>
+                <td id="score-1" class="score-index-value">0.00</td>
+                <td id="score-2" class="score-index-value">0.00</td>
+                <td id="score-3" class="score-index-value">0.00</td>
+                <td id="score-4" class="score-index-value">0.00</td>
+                <td id="score-5" class="score-index-value">0.00</td>
+                <td id="score-6" class="score-index-value">0.00</td>
+                <td id="score-7" class="score-index-value">0.00</td>
+                <td id="score-8" class="score-index-value">0.00</td>
+                <td id="score-9" class="score-index-value">0.00</td>
+              </tr>
+            </table>
+            <div id="scores"></div>
+          </div>
+        </div>
+
+        <div id="paint-stats-container" class="container">
           <h2>paint stats</h2>
           <div id="cursor-stats">
             <div>
@@ -57,10 +110,6 @@
               Hot Px Ratio: <span id="hotRatio"></span>
             </div>
           </div>
-        </div>
-        <div class="vector-container" class="dotted-border">
-          <h2>vector</h2>
-          <div id="vector"></div>
         </div>
       </div>
     </div>

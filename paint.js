@@ -8,10 +8,10 @@ const SCALE_FACTOR = 10
 const NUM_CATEGORIES = 10
 
 const COLOR_MAP = {
-  0: '#FAF5FB',
-  1: '#AAAAAA',
-  2: '#555555',
-  3: '#000000',
+  0: '#edf7f1',
+  1: '#d5ede0',
+  2: '#b5d3c7',
+  3: '#89b79e',
 }
 
 
@@ -65,28 +65,29 @@ function sumHot() {
   return { ratio, hotCount }
 }
 
-function drawNew() {
+function paintPath() {
   let i = clickX.length - 1
-
-  if (!clickDrag[i]) {
-    if (clickX.length === 0) {
-      context.beginPath();
-      context.moveTo(clickX[i], clickY[i]);
-    } else {
-      context.closePath();
-      context.beginPath();
-      context.moveTo(clickX[i], clickY[i]);
-    }
-  } else {
+  if (clickDrag[i]) {
     context.lineTo(clickX[i], clickY[i]);
+  } else {
+    switch (clickX.length) {
+      case 0:
+        context.beginPath();
+        context.moveTo(clickX[i], clickY[i]);
+        break;
+      default:
+        context.closePath();
+        context.beginPath();
+        context.moveTo(clickX[i], clickY[i]);
+        break;
+    }
   }
 }
 
 function darken(point) {
-  if (point === 3) {
-    return 3;
-  }
-  return point + 1;
+  return point === 3
+    ? 3
+    : point + 1;
 }
 
 function updateMatrix(x, y) {
@@ -130,9 +131,9 @@ function onPaintEvent(x, y) {
   let hotness = sumHot();
   updateElement("hotRatio", Math.round(hotness.ratio).toString() + "%");
   updateElement("totalHot", hotness.hotCount);
-  updateElement("vector", matrix);
+  updateVector(matrix);
   recordClick(x, y);
-  drawNew();
+  paintPath();
 }
 
 function mouseDownEventHandler(e) {
@@ -225,22 +226,46 @@ function handleControl(effect) {
   buildSquareMatrix(MATRIX_SIZE, effect);
   renderMatrix();
   updateElement("prediction", 0);
-  updateElement("vector", matrix);
+  updateVector(matrix);
   handlePrediction();
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function updateVector(matrix) {
+  let vectorElement = document.getElementById("vector");
+  removeAllChildNodes(vectorElement);
+
+  matrix.forEach(row => {
+    let newRow = document.createElement("div");
+    newRow.classList.add('vector-row');
+
+    row.forEach(element => {
+      let bit = document.createElement("span");
+      bit.classList.add('vector-bit');
+      if (element > 0){
+        bit.classList.add('bit-hot');
+      } else {
+        bit.classList.add('bit-not');
+      }
+      bit.innerHTML = element
+      newRow.appendChild(bit)
+    })
+    vectorElement.appendChild(newRow)
+  })
 }
 
 // Note the root directory needs to be served up, not fs
 tf.loadLayersModel("./models/mnist_cnn_tfjs/model.json").then(model => {
    window.model = model;
 
-  document.getElementById('clear')
-    .addEventListener('click', () => { handleControl(); });
-
-  document.getElementById('heavy-noise')
-    .addEventListener('click', () => { handleControl("heavy"); });
-
-  document.getElementById('light-noise')
-    .addEventListener('click', () => { handleControl("light"); });
+  document.getElementById('clear').addEventListener('click', () => { handleControl(); });
+  document.getElementById('heavy-noise').addEventListener('click', () => { handleControl("heavy"); });
+  document.getElementById('light-noise').addEventListener('click', () => { handleControl("light"); });
 
   canvas.addEventListener('mouseup', mouseUpEventHandler);
   canvas.addEventListener('mousemove', mouseMoveEventHandler);
@@ -250,6 +275,6 @@ tf.loadLayersModel("./models/mnist_cnn_tfjs/model.json").then(model => {
   buildSquareMatrix(MATRIX_SIZE);
   renderMatrix();
   updateElement("prediction", 0)
-  updateElement("vector", matrix)
+  updateVector(matrix);
 });
 
