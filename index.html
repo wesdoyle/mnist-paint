@@ -5,23 +5,24 @@
       <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;800&display=swap" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
       <link rel="stylesheet" href="./style.css">
+      <link rel="shortcut icon" type="image/png" href="favico.png" />
   </head>
   <body>
     <div id="app-container">
-      <div id="header-container">
+      <div id="header-container" class="dotted-border">
         <h1>mnist paint</h1>
       </div>
-      <div id="paint-container">
+      <div id="paint-container" class="dotted-border">
         <div>
-          <canvas id="paint"></canvas>
+          <canvas id="paint" class="solid-border shadow"></canvas>
         </div>
-        <div id="prediction-container">
+        <div id="prediction-container" class="solid-border shadow">
           <h1 id="prediction">
             ?
           </h1>
         </div>
       </div>
-      <div id="stats-container">
+      <div id="stats-container" class="dotted-border">
         <div class="controls">
           <h2>controls</h2>
           <button id="clear">
@@ -57,9 +58,9 @@
             </div>
           </div>
         </div>
-        <div>
+        <div class="vector-container" class="dotted-border">
           <h2>vector</h2>
-          <span id="vector"></span>
+          <div id="vector"></div>
         </div>
       </div>
     </div>

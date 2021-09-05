@@ -1,32 +1,35 @@
 body {
   background-color: #fff;
   font-family: 'Inconsolata', monospace;
-  /*background: rgb(2,0,36);*/
-  /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(54,45,103,1) 29%, rgba(50,102,182,1) 100%);*/
-  color: black;
+  margin: auto;
+  color: #222;
 }
 
-canvas {
-  border: 1px solid black;
+.shadow {
   box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.dotted-border {
+  border: 1px dotted #888;
+}
+
+.solid-border {
+  border: 1px solid #888;
 }
 
 #app-container {
   display: flex;
   max-width: 600px;
-  margin: 4px;
 }
 
 #prediction-container {
   display: flex;
   background-color: #FAF5FB;
-  border: 1px solid #333;
   align-items: center;
   justify-content: center;
   margin: 6px;
   height: 100%;
   width: 100%;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 #prediction {
@@ -34,7 +37,6 @@ canvas {
 }
 
 #header-container {
-  border: 1px dotted #222;
   margin: 4px;
   padding: 12px;
 }
@@ -43,19 +45,21 @@ canvas {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px dotted #222;
   margin: 4px;
   padding: 12px;
 }
 
 #stats-container {
-  border: 1px dotted #222;
   width: 100%;
   margin: 4px;
   padding: 6px 12px 12px 12px;
 }
 
 #cursor-stats {
+}
+
+#vector-container {
+
 }
 
 #vector {
