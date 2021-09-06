@@ -10,9 +10,9 @@ const WAIT_INTERVAL = 250
 
 const COLOR_MAP = {
   0: '#edf7f1',
-  1: '#d5ede0',
-  2: '#b5d3c7',
-  3: '#89b79e',
+  1: '#bfdbcb',
+  2: '#8cb59e',
+  3: '#55876b',
 }
 
 

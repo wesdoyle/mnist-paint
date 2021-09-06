@@ -24,6 +24,11 @@ input[type="radio"] {
   vertical-align: middle;
 }
 
+.container {
+  margin: 4px;
+  padding: 2px 12px 8px 12px;
+}
+
 .shadow {
   box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
@@ -41,7 +46,6 @@ input[type="radio"] {
 
 .vector-bit {
   padding: 1px 2px;
-  margin: 1px;
   text-aligin: center;
 }
 
@@ -66,6 +70,23 @@ input[type="radio"] {
   margin: 8px 0;
 }
 
+
+#paint-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#stats-container {
+  width: 100%;
+}
+
+#vector {
+  display: block;
+  word-wrap: break-word;
+  font-size: 0.7rem;
+}
+
 #app-container {
   display: flex;
   max-width: 600px;
@@ -82,25 +103,4 @@ input[type="radio"] {
 }
 
 #scores {
-}
-
-.container {
-  margin: 4px;
-  padding: 2px 12px 8px 12px;
-}
-
-#paint-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-#stats-container {
-  width: 100%;
-}
-
-#vector {
-  display: block;
-  word-wrap: break-word;
-  font-size: 0.8rem;
 }
